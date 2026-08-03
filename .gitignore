@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local design scratch / superseded assets (not referenced by the app)
+/ChatGPT Image *.png
+/vendor-quote-screens-export.html
+/public/confirmation-motif.webm
