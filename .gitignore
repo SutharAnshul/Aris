@@ -44,3 +44,6 @@ next-env.d.ts
 /ChatGPT Image *.png
 /vendor-quote-screens-export.html
 /public/confirmation-motif.webm
+
+.vercel
+.env*

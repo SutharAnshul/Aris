@@ -53,8 +53,8 @@ export function DeviceFrame({ children }: { children: React.ReactNode }) {
     <div
       className={
         full
-          ? "h-full w-full overflow-hidden"
-          : "flex h-full w-full items-center justify-center overflow-hidden bg-[#e6e3da]"
+          ? "h-full w-full overflow-clip"
+          : "flex h-full w-full items-center justify-center overflow-clip bg-[#e6e3da]"
       }
       style={{ visibility: fit === null ? "hidden" : "visible" }}
     >
@@ -70,8 +70,8 @@ export function DeviceFrame({ children }: { children: React.ReactNode }) {
         }
         className={
           full
-            ? "relative flex h-full w-full flex-col overflow-hidden bg-bg"
-            : "relative flex shrink-0 flex-col overflow-hidden bg-bg shadow-[0_8px_40px_rgba(0,0,0,0.16)]"
+            ? "relative flex h-full w-full flex-col overflow-clip bg-bg"
+            : "relative flex shrink-0 flex-col overflow-clip bg-bg shadow-[0_8px_40px_rgba(0,0,0,0.16)]"
         }
       >
         {children}

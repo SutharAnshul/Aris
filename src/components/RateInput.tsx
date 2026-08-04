@@ -83,7 +83,7 @@ export const RateInput = forwardRef<HTMLDivElement, RateInputProps>(
         ref={ref}
         animate={{ paddingTop: isComplete ? 20 : 28, paddingBottom: isComplete ? 20 : 28 }}
         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        className={`mb-3 rounded-[8px] px-5 transition-colors duration-200 last:mb-0 ${
+        className={`relative mb-3 rounded-[8px] px-5 transition-colors duration-200 last:mb-0 ${
           focused ? "bg-primary/[0.05]" : "bg-surface"
         }`}
       >
