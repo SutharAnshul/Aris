@@ -84,7 +84,11 @@ export const RateInput = forwardRef<HTMLDivElement, RateInputProps>(
         animate={{ paddingTop: isComplete ? 20 : 28, paddingBottom: isComplete ? 20 : 28 }}
         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
         className={`relative mb-3 rounded-[8px] px-5 transition-colors duration-200 last:mb-0 ${
-          focused ? "bg-primary/[0.05]" : "bg-surface"
+          focused
+            ? "bg-primary/[0.05]"
+            : isComplete
+              ? "bg-[#FCFAF5]"
+              : "bg-surface"
         }`}
       >
         <div className="flex items-start gap-3">
@@ -114,23 +118,27 @@ export const RateInput = forwardRef<HTMLDivElement, RateInputProps>(
           </p>
         </div>
 
-        <div className="mt-6">
+        <div className={isComplete ? "mt-4" : "mt-6"}>
           <label htmlFor={`rate-${item.id}`} className="sr-only">
             Your rate per metric tonne for {item.name}
           </label>
           <div
-            className={`flex items-baseline border-b-2 pb-2 transition-colors duration-150 ${
+            className={`flex items-baseline pb-2 transition-colors duration-150 ${
+              isComplete ? "border-b" : "border-b-2"
+            } ${
               error
                 ? "border-error"
                 : focused
                   ? "border-primary"
-                  : "border-border"
+                  : isComplete
+                    ? "border-border/60"
+                    : "border-border"
             }`}
           >
             <span
-              className={`text-[22px] transition-colors ${
-                focused || draft ? "text-text" : "text-text-muted"
-              }`}
+              className={`transition-all duration-300 ${
+                isComplete ? "text-[15px]" : "text-[22px]"
+              } ${focused || draft ? "text-text" : "text-text-muted"}`}
             >
               ₹
             </span>
@@ -146,7 +154,9 @@ export const RateInput = forwardRef<HTMLDivElement, RateInputProps>(
               onBlur={handleBlur}
               aria-invalid={!!error}
               aria-describedby={error ? `rate-${item.id}-error` : undefined}
-              className="ml-1 w-full bg-transparent text-[40px] leading-none font-semibold text-text placeholder:text-text-muted/30 focus:outline-none"
+              className={`ml-1 w-full bg-transparent leading-none font-semibold transition-all duration-300 placeholder:text-text-muted/30 focus:outline-none ${
+                isComplete ? "text-[22px] text-text-muted" : "text-[40px] text-text"
+              }`}
             />
             <span className="shrink-0 pb-1 text-[13px] text-text-muted">/ MT</span>
           </div>
@@ -180,7 +190,7 @@ export const RateInput = forwardRef<HTMLDivElement, RateInputProps>(
         </div>
 
         {presetRates[item.id] ? (
-          <div className="mt-5">
+          <div className={isComplete ? "mt-4" : "mt-5"}>
             <RatePresets
               presets={presetRates[item.id]}
               activeValue={committed}
@@ -198,9 +208,13 @@ export const RateInput = forwardRef<HTMLDivElement, RateInputProps>(
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
               className="overflow-hidden"
             >
-              <div className="mt-5">
+              <div className={isComplete ? "mt-4" : "mt-5"}>
                 <p className="text-[12px] text-text-muted">Order value</p>
-                <p className="mt-0.5 text-[22px] leading-none font-semibold text-text tabular-nums">
+                <p
+                  className={`mt-0.5 leading-none font-semibold text-text tabular-nums transition-all duration-300 ${
+                    isComplete ? "text-[28px]" : "text-[22px]"
+                  }`}
+                >
                   {formatINR(lineTotal)}
                 </p>
               </div>
